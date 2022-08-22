@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace = "com.esref.bankingsystem.mapper.AccountMapper">
+    	<insert id="create" parameterType="Account" useGeneratedKeys="true">
+        	INSERT INTO accounts (name, surname, email, tc, type, balance, last_modified, is_deleted)
+        	VALUES (#{name}, #{surname}, #{email}, #{tc}, #{type}, #{balance}, #{lastModified}, #{isDeleted})
+    	</insert>
+    	<select id="findById" resultType="Account">
+		    SELECT * FROM accounts WHERE id = #{id}
+	    </select>
+	    <update id="update" parameterType="Account">
+		    UPDATE accounts SET name = #{name}, surname = #{surname}, email = #{email}, tc = #{tc}, type = #{type}, 
+		    balance = #{balance}, last_modified = #{lastModified}, is_deleted = #{isDeleted}
+		    WHERE id = #{id}
+    	</update>
+	    <update id="delete" parameterType="Account">
+	        UPDATE accounts SET last_modified = #{lastUpdated}, is_deleted = #{isDeleted} WHERE id = #{id}
+	    </update>
+    </mapper>
